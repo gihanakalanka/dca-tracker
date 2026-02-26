@@ -11,10 +11,12 @@ const router = createBrowserRouter([
       {
         index: true,
         element: <DashbaordPage />,
+        handle: { title: "Welcome," }
       },
       {
         path: "portfolio",
         element: <PortfolioPage />,
+        handle: { title: "Portfolio" }
       }
     ]
 
