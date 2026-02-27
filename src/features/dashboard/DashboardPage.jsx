@@ -1,6 +1,20 @@
 import SummeryCard from "../../components/SummeryCard";
+import { MOCK_ASSETS } from "../../data/mockAssets";
+import { useQuery } from "@tanstack/react-query";
 
 function DashbaordPage() {
+
+    const holdingAsserts = async () => {
+        return MOCK_ASSETS;
+    }
+
+    const { data, isLoading, error } = useQuery({
+        queryKey: ['assets'],
+        queryFn: holdingAsserts
+    });
+
+
+
     return (
         <div >
 
