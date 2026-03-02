@@ -1,3 +1,4 @@
+import { flexRender, getCoreRowModel, useReactTable } from "@tanstack/react-table";
 import SummeryCard from "../../components/SummeryCard";
 import { MOCK_ASSETS } from "../../data/mockAssets";
 import { useQuery } from "@tanstack/react-query";
@@ -13,7 +14,28 @@ function DashbaordPage() {
         queryFn: holdingAsserts
     });
 
+    const columns = [
+        {
+            header: "Coin",
+            accessorKey: "symbol"
+        },
+        {
+            header: "Amount",
+            accessorKey: "amount"
+        },
+        {
+            header: "Avg. Price",
+            accessorKey: "avgPrice"
+        }
+    ];
 
+    const table = useReactTable({
+        data: data ?? [],
+        columns,
+        getCoreRowModel: getCoreRowModel()
+    });
+
+    console.log('table', table);
 
     return (
         <div >
@@ -48,6 +70,45 @@ function DashbaordPage() {
                 <SummeryCard title="Performance Overview">
 
                 </SummeryCard>
+            </section>
+            <section>
+                <table className="text-white">
+                    <thead>
+                        {table.getHeaderGroups().map(group => (
+                            <tr key={group.id}>
+                                {group.headers.map(header => (
+                                    <th key={header.id} >
+                                        {
+                                            flexRender(
+                                                header.column.columnDef.header,
+                                                header.getContext()
+                                            )
+                                        }
+                                    </th>
+                                ))}
+                            </tr>
+                        ))}
+                    </thead>
+
+                    <tbody>
+                        {
+                            table.getRowModel().rows.map(row => (
+                                <tr key={row.id}>
+                                    {row.getVisibleCells().map(cell => (
+                                        <td key={cell.id}>
+                                            {
+                                                flexRender(
+                                                    cell.column.columnDef.cell,
+                                                    cell.getContext()
+                                                )
+                                            }
+                                        </td>
+                                    ))}
+                                </tr>
+                            ))
+                        }
+                    </tbody>
+                </table>
             </section>
 
         </div>
