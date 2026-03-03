@@ -1,4 +1,4 @@
-import { flexRender, getCoreRowModel, useReactTable } from "@tanstack/react-table";
+import { createColumnHelper, flexRender, getCoreRowModel, useReactTable } from "@tanstack/react-table";
 import SummeryCard from "../../components/SummeryCard";
 import { MOCK_ASSETS } from "../../data/mockAssets";
 import { useQuery } from "@tanstack/react-query";
@@ -14,19 +14,15 @@ function DashbaordPage() {
         queryFn: holdingAsserts
     });
 
+
+    const columnHelper = createColumnHelper();
+
     const columns = [
-        {
+        columnHelper.accessor("symbol", {
             header: "Coin",
-            accessorKey: "symbol"
-        },
-        {
-            header: "Amount",
-            accessorKey: "amount"
-        },
-        {
-            header: "Avg. Price",
-            accessorKey: "avgPrice"
-        }
+            cell: (info) => (info.getValue()),
+        }),
+        columnHelper.accessor("")
     ];
 
     const table = useReactTable({
