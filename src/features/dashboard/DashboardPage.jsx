@@ -91,7 +91,7 @@ function DashbaordPage() {
                             <tr key={row.id}>
                                 {row.getVisibleCells().map(cell => (
 
-                                    <td id={cell.id}>
+                                    <td key={cell.id}>
                                         {flexRender(cell.column.columnDef.cell, cell.getContext())}
                                     </td>
                                 ))}
