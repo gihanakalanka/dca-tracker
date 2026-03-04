@@ -1,37 +1,36 @@
 import { createColumnHelper, flexRender, getCoreRowModel, useReactTable } from "@tanstack/react-table";
 import SummeryCard from "../../components/SummeryCard";
-import { MOCK_ASSETS } from "../../data/mockAssets";
-import { useQuery } from "@tanstack/react-query";
+import { MOCK_ASSETS } from "../../data/mockTransactions";
+
 
 function DashbaordPage() {
 
-    const holdingAsserts = async () => {
-        return MOCK_ASSETS;
-    }
-
-    const { data, isLoading, error } = useQuery({
-        queryKey: ['assets'],
-        queryFn: holdingAsserts
-    });
 
 
     const columnHelper = createColumnHelper();
 
     const columns = [
-        columnHelper.accessor("symbol", {
+        columnHelper.accessor("date", {
+            header: "Date",
+            cell: (info) => (info.getValue())
+        }), columnHelper.accessor("assetSymbol", {
             header: "Coin",
-            cell: (info) => (info.getValue()),
+            cell: (info) => (info.getValue())
         }),
-        columnHelper.accessor("")
+        columnHelper.accessor("priceAtTime", {
+            header: "Entry Price",
+            cell: (info) => (info.getValue())
+        }),
+        columnHelper.accessor("totalCost", {
+            header: "Total Cost",
+            cell: (info) => (info.getValue())
+        }),
+        columnHelper.accessor("amount", {
+            header: "Amount",
+            cell: (info) => (info.getValue())
+        }),
     ];
 
-    const table = useReactTable({
-        data: data ?? [],
-        columns,
-        getCoreRowModel: getCoreRowModel()
-    });
-
-    console.log('table', table);
 
     return (
         <div >
