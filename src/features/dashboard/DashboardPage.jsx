@@ -1,12 +1,12 @@
 import { createColumnHelper, flexRender, getCoreRowModel, useReactTable } from "@tanstack/react-table";
 import SummeryCard from "../../components/SummeryCard";
-import { MOCK_ASSETS } from "../../data/mockTransactions";
+import { MOCK_TRANSACTIONS } from "../../data/mockTransactions";
+import { useMemo } from "react";
 
 
 function DashbaordPage() {
 
-
-
+    const data = useMemo(() => MOCK_TRANSACTIONS, []);
     const columnHelper = createColumnHelper();
 
     const columns = [
@@ -30,6 +30,12 @@ function DashbaordPage() {
             cell: (info) => (info.getValue())
         }),
     ];
+
+    const table = useReactTable({
+        data,
+        columns,
+        getCoreRowModel: getCoreRowModel()
+    });
 
 
     return (
@@ -72,13 +78,8 @@ function DashbaordPage() {
                         {table.getHeaderGroups().map(group => (
                             <tr key={group.id}>
                                 {group.headers.map(header => (
-                                    <th key={header.id} >
-                                        {
-                                            flexRender(
-                                                header.column.columnDef.header,
-                                                header.getContext()
-                                            )
-                                        }
+                                    <th key={header.id}>
+                                        {flexRender(header.column.columnDef.header, header.getContext())}
                                     </th>
                                 ))}
                             </tr>
@@ -86,22 +87,16 @@ function DashbaordPage() {
                     </thead>
 
                     <tbody>
-                        {
-                            table.getRowModel().rows.map(row => (
-                                <tr key={row.id}>
-                                    {row.getVisibleCells().map(cell => (
-                                        <td key={cell.id}>
-                                            {
-                                                flexRender(
-                                                    cell.column.columnDef.cell,
-                                                    cell.getContext()
-                                                )
-                                            }
-                                        </td>
-                                    ))}
-                                </tr>
-                            ))
-                        }
+                        {table.getRowModel().rows.map(row => (
+                            <tr key={row.id}>
+                                {row.getVisibleCells().map(cell => (
+
+                                    <td id={cell.id}>
+                                        {flexRender(cell.column.columnDef.cell, cell.getContext())}
+                                    </td>
+                                ))}
+                            </tr>
+                        ))}
                     </tbody>
                 </table>
             </section>
