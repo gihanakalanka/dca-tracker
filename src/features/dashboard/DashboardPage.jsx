@@ -72,13 +72,14 @@ function DashbaordPage() {
 
                 </SummeryCard>
             </section>
-            <section>
-                <table className="text-white">
-                    <thead>
+            <section className="mt-15 flex flex-col gap-5">
+                <h2 className="text-slate-50 text-xl">Transactions History</h2>
+                <table className="w-full text-left table-auto md:table-fixed text-white border-collapse border-separate border-spacing-0">
+                    <thead className="bg-slate-800/40">
                         {table.getHeaderGroups().map(group => (
                             <tr key={group.id}>
                                 {group.headers.map(header => (
-                                    <th key={header.id}>
+                                    <th className="px-5 py-4 text-xs font-semibold uppercase tracking-wider  border-b border-slate-800" key={header.id}>
                                         {flexRender(header.column.columnDef.header, header.getContext())}
                                     </th>
                                 ))}
@@ -86,12 +87,13 @@ function DashbaordPage() {
                         ))}
                     </thead>
 
-                    <tbody>
+                    <tbody className="divide-y divide-slate-800">
                         {table.getRowModel().rows.map(row => (
-                            <tr key={row.id}>
+                            <tr key={row.id}
+                                className="group hover:bg-slate-800/40 transition-all duration-200">
                                 {row.getVisibleCells().map(cell => (
 
-                                    <td key={cell.id}>
+                                    <td className="px-5 py-4 text-sm text-slate-300 border-b border-slate-800" key={cell.id}>
                                         {flexRender(cell.column.columnDef.cell, cell.getContext())}
                                     </td>
                                 ))}
