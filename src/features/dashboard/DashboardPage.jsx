@@ -1,12 +1,10 @@
 import SummeryCard from "../../components/SummeryCard";
 import { MOCK_TRANSACTIONS } from "../../data/mockTransactions";
-import { transactionColumns } from "../portfolio/columnDefinitions";
+import { transactionColumns, portfolioColumns } from "../portfolio/columnDefinitions";
 import { DataTable } from "../../components/ui/DataTable";
-
+import { MOCK_ASSETS } from "../../data/mockAssets";
 
 function DashbaordPage() {
-
-
 
     return (
         <div >
@@ -43,11 +41,14 @@ function DashbaordPage() {
                 </SummeryCard>
             </section>
             <section className="mt-15 flex flex-col gap-5">
-                <h2 className="text-slate-50 text-xl">Transactions History</h2>
-
+                <h2 className="text-slate-50 text-xl">Recent Transactions</h2>
                 <DataTable data={MOCK_TRANSACTIONS} columns={transactionColumns} />
+            </section>
 
 
+            <section className="mt-15 flex flex-col gap-5">
+                <h2 className="text-slate-50 text-xl">Top Holdings</h2>
+                <DataTable data={MOCK_ASSETS} columns={portfolioColumns} />
             </section>
 
         </div>

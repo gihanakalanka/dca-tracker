@@ -23,3 +23,22 @@ export const transactionColumns = [
         cell: (info) => (info.getValue())
     }),
 ];
+
+export const portfolioColumns = [
+    columnHelper.accessor("symbol", {
+        header: "Coin",
+        cell: (info) => (info.getValue())
+    }),
+    columnHelper.accessor("avgPrice", {
+        header: "Avg. Price",
+        cell: (info) => (info.getValue())
+    }),
+    columnHelper.accessor("currentPrice", {
+        header: "Current Price",
+        cell: (info) => (info.getValue())
+    }),
+    columnHelper.accessor("amount", {
+        header: "Amount",
+        cell: (info) => (info.getValue())
+    }),
+];
