@@ -3,11 +3,21 @@ import { MOCK_TRANSACTIONS } from "../../data/mockTransactions";
 import { transactionColumns, portfolioColumns } from "../portfolio/columnDefinitions";
 import { DataTable } from "../../components/ui/DataTable";
 import { MOCK_ASSETS } from "../../data/mockAssets";
+import AddTransactionModal from "../transactions/AddTransactionModal";
+import { useState } from "react";
 
 function DashbaordPage() {
 
+    const [isModalOpen, setIsModalOpen] = useState(false);
+
     return (
         <div >
+
+            <button onClick={() => setIsModalOpen(true)}
+                className="bg-blue-500 hover:bg-blue-700 text-white py-2 px-4 rounded" >Add Transaction</button>
+
+            <AddTransactionModal isOpen={isModalOpen}
+                onClose={() => setIsModalOpen(false)} />
 
             <section className="grid grid-cols-1 md:grid-cols-3 gap-5">
                 <SummeryCard title="Total Investment!">
