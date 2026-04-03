@@ -21,22 +21,49 @@ function AddTransactionModal({ isOpen, onClose }) {
                 </div>
 
                 <form className="space-y-4">
+
+
+                    <div>
+                        <label className="block text-xs font-semibold uppercase text-slate-500 mb-1">Date</label>
+                        <input type="date" className="w-full rounded-lg border border-slate-800 bg-slate-950 p-3 text-white focus:border-emerald-500 outline-none transition-all" />
+                    </div>
+
+                    <div>
+                        <label for="type" className="block text-xs font-semibold uppercase text-slate-500 mb-1">Type</label>
+                        <select id="type" className="w-full rounded-lg border border-slate-800 bg-slate-950 p-3 text-white focus:border-emerald-500 outline-none transition-all" >
+                            <option value="BUY">BUY</option>
+                            <option value="SELL">SELL</option>
+                        </select>
+                    </div>
+
                     <div>
                         <label className="block text-xs font-semibold uppercase text-slate-500 mb-1">Asset</label>
                         <input type="text" placeholder="e.g. BTC" className="w-full rounded-lg border border-slate-800 bg-slate-950 p-3 text-white focus:border-emerald-500 outline-none transition-all" />
                     </div>
+                    <div>
+                        <label for="exchange" className="block text-xs font-semibold uppercase text-slate-500 mb-1">Exchange</label>
+                        <select id="exchange" className="w-full rounded-lg border border-slate-800 bg-slate-950 p-3 text-white focus:border-emerald-500 outline-none transition-all" >
+                            <option value="Binance">Binance</option>
+                            <option value="Bybit">Bybit</option>
+                            <option value="Coinbase">Coinbase</option>
+                        </select>
 
+                    </div>
                     <div className="grid grid-cols-2 gap-4">
                         <div>
                             <label className="block text-xs font-semibold uppercase text-slate-500 mb-1">Amount</label>
                             <input type="number" className="w-full rounded-lg border border-slate-800 bg-slate-950 p-3 text-white outline-none" />
                         </div>
                         <div>
-                            <label className="block text-xs font-semibold uppercase text-slate-500 mb-1">Price</label>
+                            <label className="block text-xs font-semibold uppercase text-slate-500 mb-1">Price At Time</label>
                             <input type="number" className="w-full rounded-lg border border-slate-800 bg-slate-950 p-3 text-white outline-none" />
                         </div>
                     </div>
 
+                    <div>
+                        <label className="block text-xs font-semibold uppercase text-slate-500 mb-1">Total Cost</label>
+                        <input type="number" className="w-full rounded-lg border border-slate-800 bg-slate-950 p-3 text-white outline-none" />
+                    </div>
                     <button className="w-full mt-4 bg-emerald-600 hover:bg-emerald-500 text-white font-bold py-3 rounded-xl transition-all shadow-lg shadow-emerald-900/20">
                         Save Transaction
                     </button>
