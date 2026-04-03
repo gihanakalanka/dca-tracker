@@ -1,6 +1,12 @@
+import { useState } from "react";
+import DatePicker from "react-datepicker";
+import "react-datepicker/dist/react-datepicker.css";
+
 
 function AddTransactionModal({ isOpen, onClose }) {
     if (!isOpen) return null;
+
+    const [startDate, setStartDate] = useState(new Date());
 
     return (
         <div className="fixed inset-0 z-50 flex items-center justify-center p-4">
@@ -23,9 +29,20 @@ function AddTransactionModal({ isOpen, onClose }) {
                 <form className="space-y-4">
 
 
-                    <div>
-                        <label className="block text-xs font-semibold uppercase text-slate-500 mb-1">Date</label>
-                        <input type="date" className="w-full rounded-lg border border-slate-800 bg-slate-950 p-3 text-white focus:border-emerald-500 outline-none transition-all" />
+                    <div className="flex flex-col">
+                        <label className="block text-xs font-semibold uppercase text-slate-500 mb-2">
+                            Transaction Date
+                        </label>
+                        <div className="relative">
+                            <DatePicker
+                                selected={startDate}
+                                onChange={(date) => setStartDate(date)}
+                                className="w-full rounded-lg border border-slate-800 bg-slate-950 p-3 text-white focus:ring-2 focus:ring-emerald-500 outline-none transition-all cursor-pointer"
+                                dateFormat="dd/MM/yyyy"
+                                maxDate={new Date()} // Senior tip: Don't allow future dates
+                            />
+                            <span className="absolute right-3 top-3 pointer-events-none opacity-50">📅</span>
+                        </div>
                     </div>
 
                     <div>
