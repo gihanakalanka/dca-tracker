@@ -12,12 +12,15 @@ function DashbaordPage() {
 
     return (
         <div >
+            <section className="mt-15 mb-15 flex flex-col gap-5">
+                <button
+                    onClick={() => setIsModalOpen(true)}
+                    className="self-start bg-blue-500 hover:bg-blue-700 text-white py-2 px-4 rounded" >Add Transaction</button>
 
-            <button onClick={() => setIsModalOpen(true)}
-                className="bg-blue-500 hover:bg-blue-700 text-white py-2 px-4 rounded" >Add Transaction</button>
+                <AddTransactionModal isOpen={isModalOpen}
+                    onClose={() => setIsModalOpen(false)} />
 
-            <AddTransactionModal isOpen={isModalOpen}
-                onClose={() => setIsModalOpen(false)} />
+            </section>
 
             <section className="grid grid-cols-1 md:grid-cols-3 gap-5">
                 <SummeryCard title="Total Investment!">
