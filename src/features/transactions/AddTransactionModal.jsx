@@ -37,9 +37,12 @@ function AddTransactionModal({ isOpen, onClose }) {
                             <DatePicker
                                 selected={startDate}
                                 onChange={(date) => setStartDate(date)}
-                                className="w-full rounded-lg border border-slate-800 bg-slate-950 p-3 text-white focus:ring-2 focus:ring-emerald-500 outline-none transition-all cursor-pointer"
+                                // 1. This makes the invisible 'container' full width
+                                wrapperClassName="w-full"
+                                // 2. This makes the actual 'input' box full width
+                                className="w-full rounded-lg border border-slate-800 bg-slate-950 p-3 text-white focus:border-emerald-500 outline-none transition-all cursor-pointer"
                                 dateFormat="dd/MM/yyyy"
-                                maxDate={new Date()} // Senior tip: Don't allow future dates
+                                maxDate={new Date()}
                             />
                             <span className="absolute right-3 top-3 pointer-events-none opacity-50">📅</span>
                         </div>
